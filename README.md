@@ -6,8 +6,8 @@
 a dart library to make HTTP requests (inspired by python [requests](https://github.com/psf/requests) module). It comes with JSON support and a lightweight implementation to store cookies like a browser.
 
 ### Cookies, huh?
-
 Server side cookies (via response header `SET-COOKIE`) are stored using the assistance of [`quiver.cache`](https://pub.dev/documentation/quiver/latest/quiver.cache/quiver.cache-library.html). Stored cookies will be send seamlessly on the next http requests you make to the same domain (simple implementation, similar to a web browser).
+
 
 ## Install
 
@@ -15,13 +15,11 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-    requests: ^4.8.0-alpha.0
+  requests: ^4.8.0-alpha.0
 ```
 
 ## Usage
-
 Start by importing the library
-
 ```dart
 import 'package:requests/requests.dart';
 ```
@@ -35,43 +33,44 @@ String body = r.content();
 ```
 
 ### the `Response` object
-
 just like in python's request module, the `Response` object has this functionality
 
--   `r.throwForStatus()` - will throw an exception if the response `statusCode` is not a great success.
--   `r.raiseForStatus()` - same as `throwForStatus`
--   `r.statusCode` - the response status code
--   `r.url` - the url in the request
--   `r.headers` - the response headers
--   `r.success` - a boolean. `true` indicates that the request was a great success
--   `r.hasError` - a boolean. `true` indicates that the request was not a great success
--   `r.bytes()` - return the body in the response as a list of bytes
--   `r.content()` - return the body in the response as a string
--   `r.json()` - recodes the body in the response and returns the result (dynamic type)
+- `r.throwForStatus()` - will throw an exception if the response `statusCode` is not a great success.
+- `r.raiseForStatus()` - same as `throwForStatus`
+- `r.statusCode` - the response status code
+- `r.url` - the url in the request 
+- `r.headers` - the response headers 
+- `r.success` - a boolean. `true` indicates that the request was a great success 
+- `r.hasError` - a boolean. `true` indicates that the request was not a great success 
+- `r.bytes()` - return the body in the response as a list of bytes 
+- `r.content()` - return the body in the response as a string
+- `r.json()` - recodes the body in the response and returns the result (dynamic type)
+
 
 ### Optional Arguments
 
--   `json` - a `dynamic` object that will be json encoded and then be set as the request's body
--   `body` - a raw string to be used as the request's body
--   `bodyEncoding` - default `RequestBodyEncoding.FormURLEncoded`. will set the `content-type` header
--   `headers` - `Map<String, String>` of custom client headers to add in the request
--   `timeoutSeconds` - default `10` seconds. after that period of time without server response an exception is thrown
--   `persistCookies` - default `true`. if should respect server's command to persist cookie
--   `verify` - default `true`. if the SSL verification enabled
--   `withCredentials` - default `false`. for dart web to handle cookies, authorization headers, or TLS client certificates
+- `json` - a `dynamic` object that will be json encoded and then be set as the request's body
+- `body` - a raw string to be used as the request's body
+- `bodyEncoding` - default `RequestBodyEncoding.FormURLEncoded`. will set the `content-type` header
+- `headers` - `Map<String, String>` of custom client headers to add in the request
+- `timeoutSeconds` - default `10` seconds. after that period of time without server response an exception is thrown
+- `persistCookies` - default `true`. if should respect server's command to persist cookie
+- `verify` - default `true`. if the SSL verification enabled
+- `withCredentials` - default `false`. for dart web to handle cookies, authorization headers, or TLS client certificates
 
 > **Note**:
 > Only one optional argument can be used in a single request `body` or `json`
 
 ### Class Methods
 
--   `.clearStoredCookies(url)` - clears the stored cookies for the url
--   `.setStoredCookies(url, CookieJar)` - set the stored cookies for the url
--   `.getStoredCookies(url)` - returns a CookieJar of the stored cookies for the url
--   `.addCookie(url, name, value)` - add a Cookie to the CookieJar associated to the url
+- `.clearStoredCookies(url)` - clears the stored cookies for the url
+- `.setStoredCookies(url, CookieJar)` - set the stored cookies for the url
+- `.getStoredCookies(url)` - returns a CookieJar of the stored cookies for the url
+- `.addCookie(url, name, value)` - add a Cookie to the CookieJar associated to the url
 
+ 
 ## Examples
-
+ 
 HTTP post, body encoded as application/x-www-form-urlencoded, parse response as json
 
 ```dart
@@ -105,7 +104,7 @@ Ignore SSL self-signed certificate
 ```dart
 var r = await Requests.get('https://expired.badssl.com/', verify: false);
 r.raiseForStatus();
-```
+``` 
 
 ---
 
